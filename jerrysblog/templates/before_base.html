@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+	<meta charset="utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width,,initial-scale=1">
+	<!-- Will be replace the page title -->
+	<title>{% block title %}Home{% endblock %}</title>
+	{% assets "main_css" %}
+	<link rel="stylesheet" type="text/css" href="{{ ASSET_URL }}">
+	{% endassets %}
+	{#<link rel="stylesheet" href="{{ url_for('static',filename='editormd/css/editormd.css') }}">#}
+	<!-- Macro: `render paginate` -->
+	{% macro render_pagination(pagination, endpoint) %}
+		<nav>
+			<ul class="pagination">
+				<li>
+				{% if pagination.ha_prev %}
+					<a href="{{ url_for('blog.home',page=pagination.prev().page) }}" aria-label="Previous">
+				{% else %}
+					<a href="{{ url_for('blog.home', page=1) }}" aria-label="Previous">
+				{% endif %}
+						<span aria-label="true">&laquo;</span>
+					</a>
+				</li>
+				{% for page in pagination.iter_pages() %}
+					{% if page %}
+						{% if page != pagination.page %}
+							<li>
+								<a href="{{ url_for(request.endpoint, page=page) }}">
+									{{ page }}
+								</a>
+							</li>
+						{% else %}
+							<li><a href="">{{ page }}</a></li>
+						{% endif %}
+					{% else %}
+						<li><a>...</a></li>
+					{% endif %}
+				{% endfor %}
+				<li>
+					<a hre="{{ url_for('blog.home', page=pagination.next().page) }}" aria-label="Next">
+						<span aria-hidden="true">&raquo;</span>
+					</a>
+				</li>
+			</ul>
+		</nav>
+	{% endmacro %}
+	{% block captcha %}
+	{% endblock %}
+
+</head>
+<body>
+	<div class="container">
+		<div class="jumbotron">
+			<!-- Replace the route function to URL: `/` -->
+			<h1><a href="{{ url_for('blog.home')}} ">Jerry's Blog</a></h1>
+				<p>Welcome to the blog!</p>
+		</div>
+		{% with messages = get_flashed_messages(with_categories=true) %}
+			{% if messages %}
+				{% for category, message in messages %}
+					<div class="button" class="close" data-dismiss="alert" aria-label="Close">
+						<button type="button" class="close" data-dismiss="alert" aria-label="Close">
+							<span aria-hidden="true">&times;</span>
+						</button>
+						{{ messages }}
+					</div>
+				{% endfor %}
+			{% endif %}
+		{% endwith %}
+		{% block body %}
+			body_content
+		{% endblock %}
+	</div>
+	<script src="http://apps.bdimg.com/libs/jquery/2.1.1/jquery.min.js"></script>
+	{% assets "main_js" %}
+	<script src="{{ ASSETS_URL }}"></script>
+	{% endassets %}
+
+	<p style="text-align: center"><a href="http://beian.miit.gov.cn/publish/query/indexFirst.action">闽ICP备19025106号-1</a></p>
+</body>
+</html>
+

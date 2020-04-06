@@ -1,0 +1,94 @@
+/* Temporary CSS Update in 2019-09-22 */
+a,
+.list .hot,
+.comment-to,
+.blogname .ca-icon,
+.trends .state-count,
+.master-info-small .nickname,
+.gotop,
+.share,
+#share a:hover,
+.content h2:before,
+.ajax-edit .edit-cue a,
+.comment-examine .open-link,
+.player .list .playing,
+.lyric-text .geci_attention,
+.player .list li:hover,
+.player .control .item:hover,
+.archives .list li a:hover,
+.list .title a:hover,
+#overlay .full-link:hover {
+	color: #898C7B;
+}
+
+.nav-menu a:hover,
+.main-menu .current-menu-item a {
+	border-color: #898C7B;
+	color: #898C7B;
+}
+
+#button, 
+.button a {
+	background: linear-gradient(left , rgba(37,218,234,0.99),rgba(155,77,249,0.99) 100%);
+	background: -o-linear-gradient(left , rgba(37,218,234,0.99),rgba(155,77,249,0.99) 100%);
+	background: -ms-linear-gradient(left , rgba(37,218,234,0.99),rgba(155,77,249,0.99) 100%);
+	background: -moz-linear-gradient(left , rgba(37,218,234,0.99),rgba(155,77,249,0.99) 100%);
+	background: -webkit-linear-gradient(left , rgba(37,218,234,0.99),rgba(155,77,249,0.99) 100%);
+}
+
+.checkbox-radio:checked + .radioinput:after {
+	background-color: #898C7B;
+}
+
+.comment-reply,
+.children .comment-body:before,
+.loader .circle:after,
+#nprogress .bar {
+	background: #898C7B;
+}
+
+.tips-temp:before {
+	border-bottom-color: #898C7B;
+}
+.tips-temp:after {
+	background: #898C7B;
+}
+
+#nprogress .peg {
+	box-shadow-color: 0 0 10px #898C7B, 0 0 5px #898C7B;
+}
+
+#nprogress .spinner-icon {
+	border-top-color: #898C7B;
+	border-left-color: #898C7B;
+}
+
+#notification .title {
+	border-color: #898C7B;
+}
+
+.links-bar .item a:hover {
+	background: #898C7B;
+	color: #fff;
+}
+
+::-webkit-scrollbar-thumb {
+	background-color: #898C7B;
+}
+
+body {
+	font-family: PingFang SC,Hiragino Sans GB,Microsoft YaHei,STHeiti,WenQuanYi Micro Hei,Helvetica,Arial,sans-serif;
+	background: rgba(170,214,141,0.1);
+}
+
+.banner,#bgvideo {
+	height: 400px;
+}
+
+.banner:before {
+	background: linear-gradient(left , rgba(0,122,207,.4),rgba(0,122,207,.4) 100%);
+	background: -o-linear-gradient(left , rgba(0,122,207,.4),rgba(0,122,207,.4) 100%);
+	background: -ms-linear-gradient(left , rgba(0,122,207,.4),rgba(0,122,207,.4) 100%);
+	background: -moz-linear-gradient(left , rgba(0,122,207,.4),rgba(0,122,207,.4) 100%);
+	background: -webkit-linear-gradient(left , rgba(0,122,207,.4),rgba(0,122,207,.4) 100%);
+}

@@ -1,0 +1,55 @@
+{% extends "base_for_home.html" %}
+{% block title %}归档-Jerry's Blog{% endblock %}
+
+{% block body %}
+
+<div id="loop" class="right">	
+    <main id="main" class="archive-main width-half" role="main" itemprop="mainContentOfPage" itemscope itemtype="http://schema.org/Blog">
+        <div class="heading">
+            <div class="inner">
+                <h1 class="title" itemprop="name">归档</h1>				
+                <span>所有文章共 {{ count[0][0] }} 篇</span>
+            </div>
+        </div>
+        <div id="primary" class="content archives">
+            <h2 class="date-year">{{ posts[0][0]}}</h2>
+            <article class="item">
+                {#<ul class="list">
+                    <h4 class="date-mon">
+                        <a href="#">{{ posts[0][0]}} - {{ posts[0][1] }} </a>
+                    </h4>
+                    <ul class="list">#}
+            {% for index in range(length) %}
+            {% if posts[index][0] != posts[index-1][0] %}
+                    </ul>
+                </ul>
+            </article>
+
+            <h2 class="date-year">{{ posts[index][0]}}</h2>
+            <article class="item">
+                <ul class="list">
+                    <h4 class="date-mon">
+                        <a href="#">{{ posts[index][0]}} - {{ posts[index][1] }} </a>
+                    </h4>
+                    <ul class="list">
+                {% elif posts[index][1] != posts[index-1][1] %}
+                <ul class="list">
+                    <h4 class="date-mon">
+                        <a href="#">{{ posts[index][0]}} - {{ posts[index][1] }} </a>
+                    </h4>
+                    <ul class="list">
+                {% endif %} 
+                        <li>
+                            <i class="dot"></i>
+                            <a href="{{url_for('blog.post',post_id=posts[index][2].id)}}">{{ posts[index][2].title }}</a>
+                            <span class="count-state">0 评</span>
+                        </li>
+            {% endfor %} 
+                    </ul>
+                </ul>
+            </article>
+        </div>
+    </main>
+</div>
+
+{% endblock %}

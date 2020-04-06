@@ -1,0 +1,56 @@
+{% extends "base.html" %}
+{% block title %}{{ post.name }}-Jerry's blog{% endblock %}
+
+<!-- Replace the BODY of template base.html -->
+{% block body %}
+<h3>{{ post.title  }}</h3>
+
+<div class="row">
+    <div class="col-lg-6">
+        <p>作者<a href="{{ url_for('blog.user',username=post.username) }}">{{ post.users.username }}</a> 时间 {{ post.publish_date }}</p>
+        <p>{{ post.text | safe }}</p>
+    </div>
+    <div class="column">
+        <div class="col-lg-2">
+            <a href="{{ url_for('blog.new_post') }}" class="btn btn-primary">新建</a>
+        </div>
+    </div>
+    <div class="column">
+        <div class="col-lg-2">
+            <a href="{{ url_for('blog.edit_post', id=post.id) }}" class="btn btn-primary">编辑</a>
+        </div>
+    </div>
+
+</div>
+
+<div class="col-lg-12">
+    <h3>网友评论：</h3>
+    <!-- Set the form -->
+    <form method="POST" action="{{ url_for('blog.post', post_id=post.id) }}">
+        <!-- form.hidden_tag提供了预防跨站请求伪造的机制，常用于表单页面 -->
+        {{ form.hidden_tag() }}
+        <div>
+            <!-- Field: `name` label -->
+            {{ form.name.label }}
+            <!-- field.errors列表类型，用于显示验证失败后的提示信息 -->
+            {% if form .name.errors %}
+                {% for e in form.name.errors %}
+                    <p class="help-block">{{ e }}</p>
+                {% endfor %}
+            {% endif %}
+            <!-- form.name(class_="form.control")把字段本身作为方法调用，会渲染作用于该字段的HTML代码 -->
+            {{ form.name(class_="form-control") }}
+        </div>
+        <div class="form-group">
+            {{ form.text.label }}
+            {% if form.text.errors %}
+                {% for e in form.text.errors %}
+                    <p class="help-block">{{ e }}</p>
+                {% endfor %}
+            {% endif %}
+            {{ form.text(class_='form-control') }}
+        </div>
+        <input class="btn btn-primary" type="submit" value="提交评论">
+    </form>
+</div>
+{% endblock %}

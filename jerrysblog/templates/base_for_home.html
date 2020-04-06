@@ -1,0 +1,243 @@
+<!DOCTYPE html>
+<html lang="zh-CN" class="no-js no-asynchronous ">
+<head>
+<meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+<meta name="theme-color" content="#898C7B">
+<meta name="applicable-device" content="pc,mobile">
+<meta name="renderer" content="webkit">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+<title>{% block title %}Jerry's Blog - 首页{% endblock %}</title>
+<meta name="description" content="小白一枚。喜欢交流分享，崇尚开源精神。喜欢Web后端(PHP/Python)、算法、网络安全、抓包爬虫、机器学习。略懂前端开发、数据分析、SQL、树莓派。目前使用C++刷PAT中。">
+<meta name="keywords" content="jerry's blog,Kidultff,mmuaa,算法,PAT,技术宅">
+<link rel="shortcut icon" type="images/x-icon" href="{{ url_for( 'static', filename='static/images/favicon.png') }}" />
+<link rel='dns-prefetch' href='{{url_for('blog.home')}}' />
+<link rel='stylesheet' id='wp-block-library-css'  href="{{ url_for( 'static', filename='static/wp-includes/css/dist/block-library/style.min.css') }}" type='text/css' media='all' />
+<link rel='stylesheet' id='theme-css'  href="{{ url_for( 'static', filename='static/wp-content/themes/Inspire/assets/css/style.css') }}" type='text/css' media='all' />
+<link rel='stylesheet' id='custom-css'  href="{{ url_for( 'static', filename='static/wp-content/themes/Inspire/assets/css/custom.css') }}" type='text/css' media='all' />
+<link rel='stylesheet' id='mobile-css'  href="{{ url_for( 'static', filename='static/wp-content/themes/Inspire/assets/css/style.mobile.css') }}" type='text/css' media='all' />
+<link rel='stylesheet' id='tips-css'  href="{{ url_for( 'static', filename='static/wp-content/themes/Inspire/assets/css/cue.css') }}" type='text/css' media='all' />
+<link rel='stylesheet' id='code-css'  href="{{ url_for( 'static', filename='static/wp-content/themes/Inspire/assets/css/code/default.css') }}" type='text/css' media='all' />
+<link rel='stylesheet' href="{{ url_for( 'static', filename='static/fontawesome/css/all.css') }}"/>
+<script type='text/javascript' src='https://cdn.bootcss.com/headroom/0.11.0/angular.headroom.js'></script>
+<link rel="icon" href="{{ url_for( 'static', filename='static/wp-content/images/logo/favicon.png') }}" sizes="32x32" />
+<link rel="icon" href="{{ url_for( 'static', filename='static/wp-content/images/logo/favicon.png') }}" sizes="192x192" />
+<link rel="apple-touch-icon" href="{{ url_for( 'static', filename='static/wp-content/images/logo/favicon.png') }}" />
+<meta name="msapplication-TileImage" content="{{ url_for( 'static', filename='static/wp-content/images/logo/favicon.png') }}" />
+</head>
+<body class="home blog">
+	<div id="wrapper" class="theme">
+		<section id="mobilebar">
+			<div class="inner width icon">
+				<div class="col back"><a href="{{url_for('blog.home')}}"><span>&#xe618;</span></a></div>
+				<div class="col title">Jerry's Blog</div>
+				<div class="col switch"><a href="javascript:;"><span>&#xe636;</span></a></div>
+			</div>
+		</section><!-- #mobilebar #-->
+		<section id="overlay" class="mobile">
+			<div id="m-menu">
+				<div class="inner">
+					<ul id="menu-%e4%b8%bb%e5%af%bc%e8%88%aa%e8%8f%9c%e5%8d%95" class="nav-menu m-menu">
+						<li id="menu-item-870" class="menu-item menu-item-type-custom menu-item-object-custom current-menu-item current_page_item menu-item-home menu-item-870"><a href="{{url_for('blog.home')}}" aria-current="page">首页</a></li>
+						<li id="menu-item-1308" class="menu-item menu-item-type-post_type menu-item-object-post menu-item-1308"><a href="{{url_for('blog.guidang')}}">归档</a></li>
+						<li id="menu-item-1015" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-1015"><a href="{{url_for('blog.tag',page=1,tag_name='CTF真题')}}">CTF真题</a></li>
+						<li id="menu-item-1014" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-1014"><a href="{{url_for('blog.tag',page=1,tag_name='PAT真题')}}">PAT真题</a></li>
+						<li id="menu-item-1064" class="menu-item menu-item-type-taxonomy menu-item-object-category menu-item-1064"><a href="#">杂项</a></li>
+						<li id="menu-item-1419" class="menu-item menu-item-type-taxonomy menu-item-object-category menu-item-1419"><a href="#">About Me</a></li>
+					</ul>		
+				</div>
+			</div>
+		</section><!-- #overlay.mobile #-->		
+
+		<header id="header" class="site-header">
+			<section class="topbar">
+				<div class="inner width">
+					<nav class="nav pull-left">
+						<ul id="menu-%e4%b8%bb%e5%af%bc%e8%88%aa%e8%8f%9c%e5%8d%95-1" class="nav-menu top-menu icon">
+							<li class="menu-item menu-item-type-custom menu-item-object-custom current-menu-item current_page_item menu-item-home menu-item-870"><a href="{{url_for('blog.home')}}" aria-current="page">首页</a></li>
+							<li class="menu-item menu-item-type-post_type menu-item-object-post menu-item-1308"><a href="{{url_for('blog.guidang')}}">归档</a></li>
+							<li class="menu-item menu-item-type-post_type menu-item-object-page menu-item-1015"><a href="{{url_for('blog.tag',page=1,tag_name='CTF真题')}}">CTF真题</a></li>
+							<li class="menu-item menu-item-type-post_type menu-item-object-page menu-item-1014"><a href="{{url_for('blog.tag',page=1,tag_name='PAT真题')}}">PAT真题</a></li>
+							<li class="menu-item menu-item-type-taxonomy menu-item-object-category menu-item-1064"><a href="#">杂项</a></li>
+							<li class="menu-item menu-item-type-taxonomy menu-item-object-category menu-item-1419"><a href="#">About Me</a></li>
+						</ul>					
+					</nav>
+					<div class="meta pull-right">
+						<form method="POST" class="searchform" action="{{url_for('blog.home',page=1)}}" role="search">
+							{{ searchform.hidden_tag() }}
+            					<!--field.errors列表类型，用于显示验证失败后的提示信息 -->
+            					{% if searchform.keyword.errors %}
+                				{% for e in searchform.keyword.errors %}
+                    				<p class="help-block">{{ e }}</p>
+                				{% endfor %}
+								{% endif %}
+								{{searchform.keyword(placeholder='Search...',class_='textinput',size="26")}}
+							{#<input type="search" name="s" class="textinput" size="26" placeholder="Search ..." />#}
+							<span class="icon search-icon"><i class="fa fa-search"></i></span>
+						</form>
+						<div class="logged button">
+							<a href="javascript:;" class="login"><span class="icon"><i class="fa fa-lock"></i></span>Sign in</a><a href="javascript:;" id="bgm"><span class="icon"><i class="fa fa-music"></i></span><span id="bgm-title">Music</span></a>
+								<div id="listen">
+									<div class="player">
+										<div class="box">
+										<img src="{{ url_for( 'static', filename='static/wp-content/images/head.jpg') }}" width="80" height="80" class="cover pull-left">
+											<div class="info pull-left">
+												<h4 class="title nowrap">Music</h4>
+												<ul class="items control icon">
+													<li class="item"><span class="rewind">&#xe67b;</span></li>
+													<li class="item"><span class="play">&#xe66e;</span></li>
+													<li class="item"><span class="fastforward">&#xe63a;</span></li>
+													<li class="item"><span class="onlist">&#xe61b;</span></li>
+												</ul>
+											</div>
+										</div>
+										<div class="list">
+											<ul id="playlist" class="items"></ul>
+											<div class="list-page-btn">
+												<a href="javascript:;" id="list-previous">上一页</a>
+												<a href="javascript:;" id="list-next">下一页</a>
+											</div>
+										</div>
+										<audio id="audio" class="bgm" type="audio/ogg"></audio>
+									</div>
+									<div id="temp"></div>
+								</div><!-- #listen -->
+						</div>
+					</div>
+				</div>
+			</section>
+
+		</header>
+
+			<section class="banner bg" style="background-image: url('{{ url_for( 'static', filename='static/wp-content/images/yueliang.jpg') }}');" data-time="20000">
+				<div id="banner-data" style="display:none">
+					<img id="banner-0" src="{{ url_for( 'static', filename='static/wp-content/images/head.jpg') }}">				
+				</div>
+				<div class="sns master-info width">
+					<a href="{{url_for('blog.home')}}" class="sns-avatar max"><img src="{{ url_for( 'static', filename='static/wp-content/images/head.jpg') }}" width="200" class="avatar avatar-200"></a>
+				</div>
+			</section>
+
+
+
+		<div id="container" class="site-refresh">
+			<section id="appbar">
+				<div id="fixedbar" class="no">
+					<div class="inner width">
+						<div class="master-info-small pull-left">
+							<div class="tooltip">
+								<div class="middle">
+									<div class="sns-avatar min"><a href="{{url_for('blog.home')}}"><img src="{{ url_for( 'static', filename='static/wp-content/images/head.jpg') }}" width="36" class="avatar avatar-36"></a></div>
+								</div>
+								<div class="middle info">
+									<h4 class="blogname">Jerry's Blog</h4>
+									<div class="nickname">@jerry_2020</div>
+								</div>
+							</div>
+						</div>
+						
+						<nav class="nav pull-left" role="navigation" itemscope itemtype="http://schema.org/SiteNavigationElement">
+							<ul id="menu-%e4%b8%bb%e5%af%bc%e8%88%aa%e8%8f%9c%e5%8d%95-2" class="nav-menu main-menu">
+								<li class="menu-item menu-item-type-custom menu-item-object-custom current-menu-item current_page_item menu-item-home menu-item-870"><a href="{{url_for('blog.home')}}" aria-current="page">首页</a></li>
+								<li class="menu-item menu-item-type-post_type menu-item-object-post menu-item-1308"><a href="{{url_for('blog.guidang')}}">归档</a></li>
+								<li class="menu-item menu-item-type-post_type menu-item-object-page menu-item-1015"><a href="{{url_for('blog.tag',page=1,tag_name='CTF真题')}}">CTF真题</a></li>
+								<li class="menu-item menu-item-type-post_type menu-item-object-page menu-item-1014"><a href="{{url_for('blog.tag',page=1,tag_name='PAT真题')}}">PAT真题</a></li>
+								<li class="menu-item menu-item-type-taxonomy menu-item-object-category menu-item-1064"><a href="#">杂项</a></li>
+								<li class="menu-item menu-item-type-taxonomy menu-item-object-category menu-item-1419"><a href="#">About Me</a></li>
+							</ul>				
+						</nav>
+						
+					</div>
+				</div>
+			</section>
+
+			<section id="contents" class="width">
+				<aside id="aside" class="left">
+					<div class="inner">
+						<div class="sns master-info">
+							<div class="info-base">
+								<h2 class="blogname">Jerry's Blog<span class="icon ca-icon"><i class="fa fa-user"></i></span></h2>
+								<div class="nickname">@jerry_2020
+										<p class="description"></p>
+								</div>
+								<ul class="info-extras">
+									<li class="item location"><p>厦门 · 华侨大学</p></li>
+									<li class="item site"><a href="{{url_for('blog.home')}}"><p>121.199.53.102</p></a></li>
+
+								</ul>
+								<div class="info-actions">
+									<div class="item">
+										<a href="mailto:924292308@qq.com" rel="nofollow" target="_blank" id="button" class="tips-top" aria-label="924292308@qq.com"><span class="icon"><i class="fa fa-mail-bulk"></i></span>发送邮件</a>
+									</div>
+								</div>
+							</div>
+							<div class="alteration">
+								<div class="widget"><h3 class="widget-title">分类目录</h3>
+									<ul>
+										{% for tag in top_tags %}
+										<li class="cat-item cat-item-4"><a href="#">{{ tag[0].name }}</a> (1)</li>
+										{% endfor %}
+									</ul>
+								</div>
+							</div>
+						</div>
+					</div>
+				</aside>
+				{% with messages = get_flashed_messages(with_categories=true) %}
+					{% if messages %}
+						{% for category, message in messages %}
+							<div class="button" class="close" data-dismiss="alert" aria-label="Close">
+								<button type="button" class="close" data-dismiss="alert" aria-label="Close">
+									<span aria-hidden="true">&times;</span>
+								</button>
+								{{ messages }}
+							</div>
+						{% endfor %}
+					{% endif %}
+				{% endwith %}
+				{% block body %}
+					body_content
+				{% endblock %}
+									
+				<aside id="aside" class="right">
+					<div class="inner"></div>
+				</aside>
+			</section>		
+		
+			<div class="js-tongji" style="display: none;"><script src="//s4.cnzz.com/z_stat.php?id=1261166373&web_id=1261166373"></script></div>
+		</div>
+		<div id="footer" class="site-footer">
+			<div class="inner textcenter">
+				<div class="copyright"></div>
+				<div class="power">
+					<span>网站已运行<b id="onlinetime"></b>天</span>
+															<span> / </span>
+					<span><a href="https://www.mmuaa.com/sitemap.xml">Sitemap</a></span>
+					<span> / </span>
+					<span><a href="http://www.beian.miit.gov.cn">#######</a></span>
+				</div>
+			</div>
+		</div>
+	</div>
+	<div class="gotop bg">
+		<span class="icon"><i class="fa fa-chevron-up"></i></span>
+	</div>
+
+{% block js %}
+{#<script type='text/javascript' src="{{ url_for( 'static', filename='static/wp-content/themes/Inspire/assets/js/init.js') }}"></script>
+<script type='text/javascript' src="{{ url_for( 'static', filename='static/wp-content/themes/Inspire/assets/js/support.js') }}"></script>
+<script type='text/javascript' src="{{ url_for( 'static', filename='static/wp-content/themes/Inspire/assets/js/project.js') }}"></script>
+<script type='text/javascript' src="{{ url_for( 'static', filename='static/wp-content/themes/Inspire/assets/js/input.min.js') }}"></script>
+<script type='text/javascript' src="{{ url_for( 'static', filename='static/wp-content/themes/Inspire/assets/js/player-base.min.js') }}"></script>
+<script type='text/javascript'>
+/* <![CDATA[ */
+var E = {"screen":"pc","ajaxurl":"http://121.199.53.102/blog/post","lrcurl":"https:\/\/www.mmuaa.com\/wp-content\/themes\/Inspire\/modules\/player\/lrc","bgm":{"audio":true,"autoplay":null,"shuffle":null,"showlrc":"on"},"bgv":"off","comment":{"edit":"on"},"buildtime":"1484870400","ver":"2020.0123.1549"};
+/* ]]> */
+</script>
+<script type='text/javascript' src="{{ url_for( 'static', filename='static/wp-content/themes/Inspire/assets/js/player.js') }}"></script>
+<script type='text/javascript' src="{{ url_for( 'static', filename='static/wp-content/themes/Inspire/assets/js/app.js') }}"></script>
+<!--32	0.047-->#}
+<script type='text/javascript' src="{{ url_for( 'static', filename='static/wp-content/themes/Inspire/assets/js/text.js') }}"></script>
+{% endblock %}
+</body>
+</html>

@@ -1,0 +1,60 @@
+<!-- Replace yhe TITLE of template base.html -->
+{% extends "base.html" %}
+{% block title %}博客页-Jerry's blog{% endblock %}
+
+{% block body %}
+<div class="container-fluid p-0">
+
+    <div class="search d7">
+        <form method="POST" action="{{ url_for('blog.blog',page=page) }}">
+            {{ form.hidden_tag() }}
+            <!--field.errors列表类型，用于显示验证失败后的提示信息 -->
+            {% if form.keyword.errors %}
+                {% for e in form.keyword.errors %}
+                    <p class="help-block">{{ e }}</p>
+                {% endfor %}
+            {% endif %}
+            {{ form.keyword }}
+            <!--<input type="text" placeholder="请输入关键词...">-->
+            <button type="submit"></button>
+        </form>
+    </div>
+
+    <section class="resume-section p-3 p-lg-5 d-flex justify-content-center" id="最新博文">
+    <div class="w-100">
+          
+        <h2 class="mb-5">所有博文</h2>
+
+        {% if posts.items==NULL %}
+        <p>对不起，未搜索到相关内容。</p>
+        {% endif %}
+
+        {% for post in posts.items %}
+        <div class="resume-item d-flex flex-column flex-md-row justify-content-between mb-5">
+            <div class="resume-content">
+            <h3 class="mb-0">{{ post.title }}</h3>
+            <div class="subheading mb-3">Intelitec Solutions</div>
+            <p>{{ post.text | truncate(75) | safe }}</p>
+            <p><a href="{{url_for('blog.post',post_id=post.id)}}">点击查看</a></p>
+        </div>
+        <div class="resume-date text-md-right">
+            <span class="text-primary">{{ post.publish_date }}</span>
+        </div>
+        </div>
+      {% endfor %}
+    </div>
+
+    </section>
+
+    <ul class="pagination">
+        <li><a href="#">«</a></li>
+        <li><a href="#">1</a></li>
+        <li><a href="#">2</a></li>
+        <li><a href="#">3</a></li>
+        <li><a href="#">4</a></li>
+        <li><a href="#">5</a></li>
+        <li><a href="#">»</a></li>
+        </ul>
+        
+</div>
+{% endblock %}

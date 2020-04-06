@@ -1,0 +1,19 @@
+{% extends 'admin/model/edit.html' %}
+
+{% block tail %}
+{{ super() }}
+<script src="{{ url_for('static',filename='editormd/examples/js/jquery.min.js') }}"></script>
+<script src="{{ url_for('static',filename='editormd/editormd.min.js') }}"></script>
+<script type="text/javascript">
+    $(function () {
+        editormd("fancy-editormd", {
+            //width: "100%"
+            height: 640,
+            syncScrolling: "single",
+            path: "{{ url_for('static',filename='editormd/lib/') }}",
+            saveHTMLToTextarea : true
+        });
+    });
+</script>
+ {{ super() }}
+{% endblock %}

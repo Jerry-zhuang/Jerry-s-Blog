@@ -1,0 +1,43 @@
+{% extends "base_for_home.html" %}
+{% block title %}首页-Jerry's Blog{% endblock %}
+
+{% block body %}
+<div id="loop" class="right">
+    <main id="main" class="width-half" role="main" itemprop="mainContentOfPage" itemscope itemtype="http://schema.org/Blog">
+        <div class="heading">
+            <div class="inner">
+                <span>今天有 1 篇新文章</span>
+            </div>
+        </div>
+        <div id="primary" class="list ">
+        {% for post in posts.items %}
+            <article id="post-{{ post.id }}" class="post-{{post.id}} post type-post status-publish format-standard hentry category-python"data-id="{{post.id}}" data-url="http://121.199.53.102/blog/post/{{post.id}}" itemprop="blogPost">
+                <div class="entry-content ">
+                    <div class="meta">
+                        <span class="nickname">@{{post.users.username}}</span>
+                        <time itemprop="datePublished" datetime="{{ post.publish_date }}"> · {{ post.publish_date }}</time>
+                    </div>
+                    <h2 class="title"><a href="http://121.199.53.102/blog/post/{{post.id}}" rel="bookmark">{{ post.title }}</a></h2>		
+                    <div class="summary" itemprop="description">
+                        {{ post.text | truncate(75) | safe }}
+                    </div>
+                </div>
+                <footer class="entry-footer ">
+                    <ul class="items state">
+                        <li class="item count-comment"><span class="icon"><i class="fa fa-comment"></i></span>0</li>
+                        <li class="item count-image"><span class="icon">&#xe60e;</span>1</li>
+                    </ul>
+                </footer>
+            </article>
+        {% endfor %}
+        </div>
+        <div id="pagination"><div class="posts-paging">
+            <a href="{{url_for('blog.home',page=page+1)}}" >
+                <i class="dot"></i>
+                <i class="dot"></i>
+                <i class="dot"></i>
+            </a>
+        </div>
+    </main>
+</div>
+{% endblock %}
