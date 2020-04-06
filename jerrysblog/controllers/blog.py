@@ -97,7 +97,7 @@ def post(post_id):
     commentform = CommentForm()
     # 在视图函数中创建一个 form 对象, 并以此来获取用户在输入框中输入的数据对象
     # form.validata_on_submit() 方法会隐式的判断该 HTTP 请求是不是 POST, 若是, 则将请求中提交的表单数据对象传入上述的 form 对象并进行数据检验.    # 若提交的表单数据对象通过了 form 对象的检验, 则 form.validata_on_submit() 返回为 True 并且将这些数据传给 form 对象, 成为其实例属性.
-    if searcgform.validate_on_submit():
+    if searchform.validate_on_submit():
         posts = Post.query.join(posts_tags).filter(
             Post.title.like("%"+searchform.keyword.data+"%"),Tag.name=="ctf"
             ).order_by(
