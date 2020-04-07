@@ -151,6 +151,7 @@ def edit_post(id):
     """编辑博客"""
 
     post = Post.query.get_or_404(id)
+    searchform = SearchForm()
 
     if not current_user:
         return redirect(url_for('main.login'))
@@ -159,6 +160,7 @@ def edit_post(id):
         return redirect(url_for('blog.post',post_id=id))
 
     permission = Permission(UserNeed(post.users.id))
+
     if permission.can() or admin_permission.can():
         postform = PostForm()
 
@@ -169,19 +171,19 @@ def edit_post(id):
             data = data2[mes+1:]
 
             post.title = postform.title.data
-            post.text = data
+            post.text = postform.text.data
             post.publish_date = datetime.now()
 
             db.session.add(post)
             db.session.commit()
             return redirect(url_for('blog.post',post_id=post.id))
     else:
-        abort(403)
+        return redirect(url_for('blog.home',page=1))
 
 
     postform.title.data  = post.title
     postform.text.data = post.text
-    return render_template('edit_post.html',postform=postform,post=post)
+    return render_template('edit_post.html',postform=postform,post=post,searchform=searchform)
 
 @blog_blueprint.route('/归档', methods=['GET', 'POST'])
 def guidang():
