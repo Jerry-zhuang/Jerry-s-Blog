@@ -45,7 +45,7 @@ def login():
 
 		identity_changed.send(current_app._get_current_object(),identity=Identity(user.id))
 
-		flash("登录成功",category="success")
+		"""flash("登录成功",category="success")"""
 		return redirect(url_for('blog.home'))
 
 	return render_template('login.html',loginform=loginform,openid_form=openid_form,searchform=searchform)

@@ -80,7 +80,7 @@
 							<span class="icon search-icon"><i class="fa fa-search"></i></span>
 						</form>
 						<div class="logged button">
-							<a href="javascript:;" class="login"><span class="icon"><i class="fa fa-lock"></i></span>Sign in</a><a href="javascript:;" id="bgm"><span class="icon"><i class="fa fa-music"></i></span><span id="bgm-title">Music</span></a>
+							<a href="{{url_for('main.login')}}" class="login"><span class="icon"><i class="fa fa-lock"></i></span>Sign in</a><a href="javascript:;" id="bgm"><span class="icon"><i class="fa fa-music"></i></span><span id="bgm-title">Music</span></a>
 								<div id="listen">
 									<div class="player">
 										<div class="box">
@@ -146,6 +146,12 @@
 								<li class="menu-item menu-item-type-taxonomy menu-item-object-category menu-item-1419"><a href="#">About Me</a></li>
 							</ul>				
 						</nav>
+						<div itemscope itemtype="http://schema.org/WebPage" id="crumbs" class="nowrap"> <a itemprop="breadcrumb" href="https://121.199.53.102/blog"><span class="icon">&#xe637;</span>首页</a>
+							» <a itemprop="breadcrumb" href="{{url_for('blog.tag',tag_name=tag.name)}}">{{tag[0].name}}</a>
+							{% if post %}
+							» <span class="current">{{post.title}}</span>
+							{% endif %}
+						</div>	
 					</div>
 				</div>
 			</section>
@@ -166,7 +172,7 @@
 								</ul>
 								<div class="info-actions">
 									<div class="item">
-										<a href="mailto:924292308@qq.com" rel="nofollow" target="_blank" id="button" class="tips-top" aria-label="924292308@qq.com"><span class="icon"><i class="fa fa-mail-bulk"></i></span>发送邮件</a>
+										<a href="mailto:924292308@qq.com" rel="nofollow" target="_blank" id="button" class="tips-top" aria-label="924292308@qq.com"><span class="icon"></span>发送邮件</a>
 									</div>
 								</div>
 							</div>
@@ -174,7 +180,7 @@
 								<div class="widget"><h3 class="widget-title">分类目录</h3>
 									<ul>
 										{% for tag in top_tags %}
-										<li class="cat-item cat-item-4"><a href="#">{{ tag[0].name }}</a> (1)</li>
+										<li class="cat-item cat-item-4"><a href="{{url_for('blog.tag',tag_name=tag[0].name)}}">{{ tag[0].name }}</a> ({{tag[1]}})</li>
 										{% endfor %}
 									</ul>
 								</div>

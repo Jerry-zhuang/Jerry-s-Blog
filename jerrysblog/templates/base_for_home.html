@@ -76,7 +76,7 @@
 							<span class="icon search-icon"><i class="fa fa-search"></i></span>
 						</form>
 						<div class="logged button">
-							<a href="javascript:;" class="login"><span class="icon"><i class="fa fa-lock"></i></span>Sign in</a><a href="javascript:;" id="bgm"><span class="icon"><i class="fa fa-music"></i></span><span id="bgm-title">Music</span></a>
+							<a href="{{url_for('main.login')}}" class="login"><span class="icon"><i class="fa fa-lock"></i></span>Sign in</a><a href="javascript:;" id="bgm"><span class="icon"><i class="fa fa-music"></i></span><span id="bgm-title">Music</span></a>
 								<div id="listen">
 									<div class="player">
 										<div class="box">
@@ -175,7 +175,7 @@
 								<div class="widget"><h3 class="widget-title">分类目录</h3>
 									<ul>
 										{% for tag in top_tags %}
-										<li class="cat-item cat-item-4"><a href="#">{{ tag[0].name }}</a> (1)</li>
+										<li class="cat-item cat-item-4"><a href="{{url_for('blog.tag',tag_name=tag[0].name)}}">{{ tag[0].name }}</a> ({{tag[1]}})</li>
 										{% endfor %}
 									</ul>
 								</div>

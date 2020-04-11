@@ -2,31 +2,33 @@
 
 {% block title %}New Post{% endblock %}
 
-{% block md %}
-  <section class="resume-section p-3 p-lg-5 d-flex justify-content-center" id="新建博文">
-  <div class="w-100">
-    <div class="resume-item d-flex flex-column flex-md-row justify-content-between mb-5">
-    <div class="resume-content">
-    <h3 class="mb-5">新建博客</h3>
-  <form method="POST" action="{{ url_for('blog.new_post') }}">
-    {{ postform.hidden_tag() }}
-    <div class="form-group">
-      {{ postform.title.label }}
-      {% if postform.title.errors %}
-        {% for e in postform.title.errors %}
-          <p class="help-block">{{ e }}</p>
-        {% endfor %}
-      {% endif %}
-      {{ postform.title(class_='form-control') }}
-    </div>
-    <div class="form-group">
-      {{ postform.text.label }}
-      {% if postform.text.errors %}
-        {% for e in postform.text.errors %}
 
-          <p class="help-block">{{ e }}</p> 
-        {% endfor %}
-      {% endif %}
+{% block md %}
+<section id="contents" class="width">
+<aside id="aside" class="left">
+  <div class="inner">
+    <div class="sns master-info">
+      <div class="info-base">
+        <h2 class="blogname">新建博客</h2>
+        <form method="POST" action="{{ url_for('blog.new_post') }}">
+          {{ postform.hidden_tag() }}
+          <div class="form-group">
+            {{ postform.title.label }}
+            {% if postform.title.errors %}
+            {% for e in postform.title.errors %}
+              <p class="help-block">{{ e }}</p>
+            {% endfor %}
+            {% endif %}
+            {{ postform.title(class_='form-control') }}
+          </div>
+          <div class="form-group">
+            {{ postform.text.label }}
+            {% if postform.text.errors %}
+            {% for e in postform.text.errors %}
+
+              <p class="help-block">{{ e }}</p> 
+            {% endfor %}
+            {% endif %}
       <!--textarea name="editormd"-->
       <div id="fancy-editormd" class="editormd">
         {{ postform.text(style="display:none;") }}
@@ -37,6 +39,7 @@
     </div>
     </div>
   </div>
+  </aside>
   </section>
 {% endblock%}
 
@@ -52,7 +55,8 @@
             height: 640,
             syncScrolling: "single",
             path: "{{ url_for('static',filename='editormd/lib/') }}",
-            saveHTMLToTextarea : true
+            saveHTMLToTextarea : true,
+            emoji: true
         });
     });
 </script>

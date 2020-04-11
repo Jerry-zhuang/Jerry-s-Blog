@@ -8,8 +8,8 @@ from jerrysblog.models import User
 class LoginForm(FlaskForm):
     """Login form"""
 
-    username = StringField('用户名',[DataRequired(),Length(max=255)])
-    password = PasswordField('密码',[DataRequired()])
+    username = StringField("",[DataRequired(),Length(max=255)])
+    password = PasswordField("",[DataRequired()])
     remember = BooleanField("记住密码")
  
 #LoginForm 重载的 validate() 中调用了父类 Form 中的 validate()，用于检验用户输入的数据是否通过了 username/password 字段的检验器。
@@ -26,7 +26,7 @@ class LoginForm(FlaskForm):
 
         user = User.query.filter_by(username=self.username.data).first()
         if not user:
-            self.uername.errors.append('无效的用户名或密码')
+            self.username.errors.append('无效的用户名或密码')
             return False
 
         if not user.check_password(self.password.data):

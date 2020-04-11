@@ -27,13 +27,14 @@ blog_blueprint = Blueprint(
 def sidebar():
     """目录"""
 
+    today = db.session.query(func.count(Post.id)).filter(Post.publish_date.like(str(datetime.now().date())+"%")).first()
     totals = func.count(posts_tags.c.post_id).label('total')
     top_tags = db.session.query(
             Tag, totals).join(
             posts_tags
         ).group_by(Tag).order_by(totals.desc()).all()
     
-    return top_tags
+    return today,top_tags
 
 
 @blog_blueprint.route('/')
@@ -54,13 +55,14 @@ def home(page=1):
             Post.publish_date.desc()
         ).paginate(page, 10)
 
-    top_tags = sidebar()
+    today, top_tags = sidebar()
 
     return render_template('home.html',
                             page=page,
                             posts=posts,
                             searchform=searchform,
-                            top_tags=top_tags)
+                            top_tags=top_tags,
+                            today=today)
 
 @blog_blueprint.route('/ctf/<int:page>', methods=('GET', 'POST'))
 def ctf_blog(page=1):
@@ -112,12 +114,15 @@ def post(post_id):
         db.session.commit()
 
     post = db.session.query(Post).get_or_404(post_id)
-    tags = post.tags
+    tag = post.tags
     comments = post.comments.order_by(Comment.date.desc()).all()
+
+    today, top_tags = sidebar()
 
     return render_template('post.html',
                            post=post,
-                           tags=tags,
+                           tag=tag,
+                           top_tags=top_tags,
                            comments=comments,
                            searchform=searchform,
                            commentform=commentform)
@@ -193,7 +198,7 @@ def guidang():
     posts = db.session.query(extract('year',Post.publish_date),extract('month',Post.publish_date).label('month'),Post).group_by(Post.publish_date.desc()).order_by(Post.publish_date.desc()).all()
     length = len(posts)
 
-    top_tags = sidebar()
+    today, top_tags = sidebar()
     return render_template('归档.html',
                             count = count,
                             posts=posts,
@@ -207,13 +212,15 @@ def tag(tag_name,page=1):
     """View function for tag page"""
     searchform = SearchForm()
 
-    posts = db.session.query(Post).join(posts_tags).filter(Tag.name=="CTF真题").order_by(Post.publish_date.desc()).paginate(page, 10)
+    #posts = db.session.query(Post).join(posts_tags).filter(Tag.name=='CTF真题').order_by(Post.publish_date.desc()).paginate(page, 10)
     #tag = db.session.query(Tag).filter_by(name=tag_name).first_or_404()
     # posts = tag.posts.order_by(Post.publish_date.desc()).all()
+    tag = Tag.query.filter_by(name=tag_name).first()
+    posts = tag.posts
 
     top_tags = sidebar()
 
-    return render_template('home.html',
+    return render_template('tag.html',
                            tag=tag,
                            posts=posts,
                            searchform=searchform,
